@@ -33,7 +33,7 @@
     <string name="text_about_license_title"><![CDATA[Attributions & License]]></string>
     <string name="text_about_license">Licensed Under Apache 2.0 License</string>
     <string name="text_about_visit_title">Visit</string>
-    <string name="text_about_visit_url"><u>https://github.com/Spikeysanju/Expenso</u></string>
+    <string name="text_about_visit_url"><u>https://github.com/ArunSivanandan/Money-Manager</u></string>
     <string name="text_app_version">v%s (%d)</string>
     <string name="text_share_as_text">Share as Text</string>
     <string name="text_share_as_image">Share as Image</string>
@@ -49,4 +49,9 @@
     <string name="text_undo">Undo</string>
     <string name="text_error_occurred">Error occurred!</string>
 
+    // Filter feature
+    <string name="text_filter_by">Filter by </string>
+    <string name="text_overall">Overall</string>
+    <string name="text_income">All Income</string>
+    <string name="text_expenses">All Expenses</string>
 </resources>

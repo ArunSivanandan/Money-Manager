@@ -92,7 +92,9 @@ class DashboardFragment :
                             getString(R.string.text_total_balance)
                         totalIncomeExpenseView.show()
                         incomeCardView.totalTitle.text = getString(R.string.text_total_income)
+                        incomeCardView.totalCardView.setCardBackgroundColor(ContextCompat.getColorStateList(this@DashboardFragment.context!!, R.color.income_green)!!)
                         expenseCardView.totalTitle.text = getString(R.string.text_total_expense)
+                        expenseCardView.totalCardView.setCardBackgroundColor(ContextCompat.getColorStateList(this@DashboardFragment.context!!, R.color.expense_red)!!)
                         expenseCardView.totalIcon.setImageResource(R.drawable.ic_expense)
                     }
                     "Income" -> {
@@ -240,6 +242,21 @@ class DashboardFragment :
                 bundle
             )
         }
+
+        radioGroup.setOnCheckedChangeListener { radioGroup, _ ->
+            when (radioGroup.checkedRadioButtonId) {
+                rbOverall.id -> {
+                    viewModel.overall()
+                }
+                rbAllIncome.id -> {
+                    viewModel.allIncome()
+                }
+                rbAllExpenses.id -> {
+                    viewModel.allExpense()
+                }
+            }
+        }
+
     }
 
     override fun getViewBinding(
@@ -250,66 +267,23 @@ class DashboardFragment :
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_ui, menu)
 
-        val item = menu.findItem(R.id.spinner)
-        val spinner = item.actionView as Spinner
-
-        val adapter = ArrayAdapter.createFromResource(
-            applicationContext(),
-            R.array.allFilters,
-            R.layout.item_filter_dropdown
-        )
-        adapter.setDropDownViewResource(R.layout.item_filter_dropdown)
-        spinner.adapter = adapter
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                lifecycleScope.launchWhenStarted {
-                    when (position) {
-                        0 -> {
-                            viewModel.overall()
-                            (view as TextView).setTextColor(resources.getColor(R.color.black))
-                        }
-                        1 -> {
-                            viewModel.allIncome()
-                            (view as TextView).setTextColor(resources.getColor(R.color.black))
-                        }
-                        2 -> {
-                            viewModel.allExpense()
-                            (view as TextView).setTextColor(resources.getColor(R.color.black))
-                        }
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                lifecycleScope.launchWhenStarted {
-                    viewModel.overall()
-                }
-            }
-        }
-
         // Set the item state
         lifecycleScope.launchWhenStarted {
             val isChecked = viewModel.getUIMode.first()
-            val uiMode = menu.findItem(R.id.action_night_mode)
-            uiMode.isChecked = isChecked
-            setUIMode(uiMode, isChecked)
+//            val uiMode = menu.findItem(R.id.action_night_mode)
+//            uiMode.isChecked = isChecked
+//            setUIMode(uiMode, isChecked)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         return when (item.itemId) {
-            R.id.action_night_mode -> {
-                item.isChecked = !item.isChecked
-                setUIMode(item, item.isChecked)
-                true
-            }
+//            R.id.action_night_mode -> {
+//                item.isChecked = !item.isChecked
+//                setUIMode(item, item.isChecked)
+//                true
+//            }
 
             R.id.action_about -> {
                 findNavController().navigate(R.id.action_dashboardFragment_to_aboutFragment)

@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'org.moneymanager.com'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "org.moneymanager.com"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 

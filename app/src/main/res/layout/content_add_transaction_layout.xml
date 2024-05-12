@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_16"
         android:hint="@string/text_expense_transaction_type"
-        app:boxBackgroundColor="@color/background">
+        app:boxBackgroundColor="@color/bg_color">
 
         <AutoCompleteTextView
             android:id="@+id/et_transactionType"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_16"
         android:hint="@string/text_expense_tag"
-        app:boxBackgroundColor="@color/background">
+        app:boxBackgroundColor="@color/bg_color">
 
         <AutoCompleteTextView
             android:id="@+id/et_tag"

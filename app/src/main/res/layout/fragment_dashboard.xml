@@ -4,92 +4,158 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    style="@style/LayoutBackground"
     tools:context=".view.dashboard.DashboardFragment">
 
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/main_dashboard_scroll_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none">
+        android:layout_height="wrap_content">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dashboard_group"
+        <LinearLayout
+            android:id="@+id/llt_filter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <include
-                android:id="@+id/total_balance_view"
-                layout="@layout/total_balance_view"
-                android:layout_width="match_parent"
-                android:layout_height="124dp"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginEnd="@dimen/dimen_8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <LinearLayout
-                android:id="@+id/total_income_expense_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/total_balance_view">
-
-                <include
-                    android:id="@+id/income_card_view"
-                    layout="@layout/content_income_expense_card_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    android:id="@+id/expense_card_view"
-                    layout="@layout/content_income_expense_card_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/title_recent_transaction"
+                android:id="@+id/tv_filter_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_16"
                 android:layout_marginTop="@dimen/dimen_16"
+                android:textColor="@color/black"
                 android:fontFamily="@font/open_sans_semibold"
-                android:text="@string/text_recent_transactions"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/total_income_expense_view" />
+                android:text="@string/text_filter_by"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/transaction_rv"
+            <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_recent_transaction"
-                tools:listitem="@layout/item_transaction_layout" />
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:padding="5dp">
+
+                <RadioButton
+                    android:id="@+id/rb_overall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:textSize="12sp"
+                    android:text="@string/text_overall"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_semibold"/>
+
+                <RadioButton
+                    android:id="@+id/rb_all_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="@string/text_income"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_semibold"/>
+
+                <RadioButton
+                    android:id="@+id/rb_all_expenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="@string/text_expenses"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_semibold"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_dashboard_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/llt_filter"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dashboard_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </androidx.core.widget.NestedScrollView>
+
+                <include
+                    android:id="@+id/total_balance_view"
+                    layout="@layout/total_balance_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="124dp"
+                    android:layout_marginStart="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginEnd="@dimen/dimen_8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <LinearLayout
+                    android:id="@+id/total_income_expense_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:baselineAligned="false"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/total_balance_view">
+
+                    <include
+                        android:id="@+id/income_card_view"
+                        layout="@layout/content_income_expense_card_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <include
+                        android:id="@+id/expense_card_view"
+                        layout="@layout/content_income_expense_card_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/title_recent_transaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="@string/text_recent_transactions"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/total_income_expense_view" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/transaction_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_recent_transaction"
+                    tools:listitem="@layout/item_transaction_layout" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
 
     <ViewStub
         android:id="@+id/emptyStateLayout"
