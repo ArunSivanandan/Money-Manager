@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    tools:context=".view.lock.LockActivity">
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:text="@string/lock_note"
+        app:layout_constraintBottom_toTopOf="@id/llt_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llt_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_new_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16"
+            android:hint="@string/lock_create_new_pwd"
+            android:textColorHint="@color/lbl_gray_txt"
+            android:background="@color/transparent"
+            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+            app:startIconContentDescription="@string/lock_content_desc"
+            app:endIconMode="password_toggle"
+            app:errorTextColor="@color/expense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_new_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16"
+            android:hint="@string/lock_confirm_new_pwd"
+            android:textColorHint="@color/lbl_gray_txt"
+            android:background="@color/transparent"
+            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+            app:startIconContentDescription="@string/lock_content_desc"
+            app:endIconMode="password_toggle"
+            app:errorTextColor="@color/expense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_confirm_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:textSize="14sp"
+            android:textColor="@color/expense"
+            android:text="@string/lock_error_desc"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/llt_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16"
+            android:text="@string/lock_confirm_btn"
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

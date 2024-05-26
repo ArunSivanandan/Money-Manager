@@ -26,8 +26,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import getCurrentDate
 
-import org.moneymanager.com.local.datastore.UIModeImpl
+import org.moneymanager.com.local.datastore.DataStoreImpl
 import org.moneymanager.com.model.Transaction
 import org.moneymanager.com.exportcsv.CreateCsvContract
 import org.moneymanager.com.exportcsv.OpenCsvContract
@@ -54,7 +55,9 @@ class DashboardFragment :
     override val viewModel: TransactionViewModel by activityViewModels()
 
     @Inject
-    lateinit var themeManager: UIModeImpl
+    lateinit var themeManager: DataStoreImpl
+
+    var isFilterByExpense = false
 
     private val csvCreateRequestLauncher =
         registerForActivityResult(CreateCsvContract()) { uri: Uri? ->
@@ -88,6 +91,7 @@ class DashboardFragment :
             viewModel.transactionFilter.collect { filter ->
                 when (filter) {
                     "Overall" -> {
+                        isFilterByExpense = false
                         totalBalanceView.totalBalanceTitle.text =
                             getString(R.string.text_total_balance)
                         totalIncomeExpenseView.show()
@@ -98,11 +102,13 @@ class DashboardFragment :
                         expenseCardView.totalIcon.setImageResource(R.drawable.ic_expense)
                     }
                     "Income" -> {
+                        isFilterByExpense = false
                         totalBalanceView.totalBalanceTitle.text =
                             getString(R.string.text_total_income)
                         totalIncomeExpenseView.hide()
                     }
                     "Expense" -> {
+                        isFilterByExpense = true
                         totalBalanceView.totalBalanceTitle.text =
                             getString(R.string.text_total_expense)
                         totalIncomeExpenseView.hide()
@@ -178,7 +184,10 @@ class DashboardFragment :
         val expense = totalExpense.sumOf { it.amount }
         incomeCardView.total.text = "+ ".plus(indianRupee(income))
         expenseCardView.total.text = "- ".plus(indianRupee(expense))
-        totalBalanceView.totalBalance.text = indianRupee(income - expense)
+        totalBalanceView.totalBalance.text = if (!isFilterByExpense && income == 0.0)
+            indianRupee(0.0)
+        else
+            indianRupee(income - expense)
     }
 
     private fun observeTransaction() = lifecycleScope.launchWhenStarted {
@@ -268,12 +277,12 @@ class DashboardFragment :
         inflater.inflate(R.menu.menu_ui, menu)
 
         // Set the item state
-        lifecycleScope.launchWhenStarted {
-            val isChecked = viewModel.getUIMode.first()
+//        lifecycleScope.launchWhenStarted {
+//            val isChecked = viewModel.getUIMode.first()
 //            val uiMode = menu.findItem(R.id.action_night_mode)
 //            uiMode.isChecked = isChecked
 //            setUIMode(uiMode, isChecked)
-        }
+//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -291,7 +300,7 @@ class DashboardFragment :
             }
 
             R.id.action_export -> {
-                val csvFileName = "money_manager_${System.currentTimeMillis()}"
+                val csvFileName = "money_manager_${getCurrentDate()}"
                 csvCreateRequestLauncher.launch(csvFileName)
                 return true
             }
@@ -340,14 +349,4 @@ class DashboardFragment :
         requireContext(),
         Manifest.permission.READ_EXTERNAL_STORAGE
     ) == PackageManager.PERMISSION_GRANTED
-
-    private fun setUIMode(item: MenuItem, isChecked: Boolean) {
-        if (isChecked) {
-            viewModel.setDarkMode(true)
-            item.setIcon(R.drawable.ic_night)
-        } else {
-            viewModel.setDarkMode(false)
-            item.setIcon(R.drawable.ic_day)
-        }
-    }
 }

@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.collect
 import dagger.hilt.android.AndroidEntryPoint
 import org.moneymanager.com.R
 import org.moneymanager.com.databinding.ActivityMainBinding
-import org.moneymanager.com.local.datastore.UIModeImpl
+import org.moneymanager.com.local.datastore.DataStoreImpl
 import org.moneymanager.com.repo.TransactionRepo
 import org.moneymanager.com.exportcsv.ExportCsvService
 import org.moneymanager.com.view.main.viewmodel.TransactionViewModel
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var exportCsvService: ExportCsvService
     @Inject
-    lateinit var themeManager: UIModeImpl
+    lateinit var themeManager: DataStoreImpl
     private val viewModel: TransactionViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
@@ -52,21 +52,21 @@ class MainActivity : AppCompatActivity() {
         viewModel
 
         initViews(binding)
-        observeThemeMode()
+//        observeThemeMode()
         observeNavElements(binding, navHostFragment.navController)
     }
 
-    private fun observeThemeMode() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.getUIMode.collect {
-                val mode = when (it) {
-                    true -> AppCompatDelegate.MODE_NIGHT_YES
-                    false -> AppCompatDelegate.MODE_NIGHT_NO
-                }
-                AppCompatDelegate.setDefaultNightMode(mode)
-            }
-        }
-    }
+//    private fun observeThemeMode() {
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.getUIMode.collect {
+//                val mode = when (it) {
+//                    true -> AppCompatDelegate.MODE_NIGHT_YES
+//                    false -> AppCompatDelegate.MODE_NIGHT_NO
+//                }
+//                AppCompatDelegate.setDefaultNightMode(mode)
+//            }
+//        }
+//    }
 
     private fun observeNavElements(
         binding: ActivityMainBinding,

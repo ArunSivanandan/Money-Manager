@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import org.moneymanager.com.utils.Constants.EMPTY_STRING
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -96,4 +97,9 @@ val String.cleanTextContent: String
 // parse string to double
 fun parseDouble(value: String?): Double {
     return if (value == null || value.isEmpty()) Double.NaN else value.toDouble()
+}
+
+fun getCurrentDate(): String = run {
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    dateFormat.format(Date()) ?: EMPTY_STRING
 }

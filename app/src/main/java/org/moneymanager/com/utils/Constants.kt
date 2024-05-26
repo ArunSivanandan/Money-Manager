@@ -17,4 +17,10 @@ object Constants {
         "Entertainment",
         "Miscellaneous"
     )
+
+    const val EMPTY_STRING = ""
+
+    const val DB_NAME = "transaction.db"
+
+    const val MM_GITHUB_LINK = "https://github.com/ArunSivanandan/Money-Manager"
 }

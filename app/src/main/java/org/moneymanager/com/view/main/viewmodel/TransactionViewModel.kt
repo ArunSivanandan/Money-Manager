@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.moneymanager.com.local.datastore.UIModeImpl
+import kotlinx.coroutines.CoroutineScope
 import org.moneymanager.com.model.Transaction
 import org.moneymanager.com.repo.TransactionRepo
 import org.moneymanager.com.exportcsv.ExportCsvService
@@ -15,21 +15,17 @@ import org.moneymanager.com.utils.viewState.ExportState
 import org.moneymanager.com.utils.viewState.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flatMapMerge
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import org.moneymanager.com.local.datastore.DataStoreImpl
+import org.moneymanager.com.utils.Constants.EMPTY_STRING
 import javax.inject.Inject
 
 @HiltViewModel
 class TransactionViewModel @Inject constructor(
     private val transactionRepo: TransactionRepo,
     private val exportService: ExportCsvService,
-    private val uiModeDataStore: UIModeImpl
+    private val uiModeDataStore: DataStoreImpl
 ) : ViewModel() {
 
     // state for export csv status
@@ -50,9 +46,9 @@ class TransactionViewModel @Inject constructor(
     val getUIMode = uiModeDataStore.uiMode
 
     // save ui mode
-    fun setDarkMode(isNightMode: Boolean) {
+    fun saveLockPwd(password: String) {
         viewModelScope.launch(IO) {
-            uiModeDataStore.saveToDataStore(isNightMode)
+            uiModeDataStore.saveToDataStore(password)
         }
     }
 
