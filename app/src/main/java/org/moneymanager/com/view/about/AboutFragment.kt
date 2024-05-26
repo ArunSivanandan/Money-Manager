@@ -34,7 +34,7 @@ class AboutFragment : BaseFragment<FragmentAboutBinding, AboutViewModel>() {
             }
         }
 
-        visitURL.setOnClickListener {
+        ivGithub.setOnClickListener {
             viewModel.launchRepository().run {
                 launchBrowser(viewModel.url.value)
             }

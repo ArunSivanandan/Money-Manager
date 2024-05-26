@@ -86,21 +86,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/license" />
 
+        <ImageView
+            android:id="@+id/iv_github"
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_margin="@dimen/dimen_16"
+            android:src="@drawable/ic_github"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/iv_github_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/visitTitle"/>
 
         <TextView
-            android:id="@+id/visitURL"
+            android:id="@+id/tv_github"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_16"
-            android:layout_marginTop="@dimen/dimen_12"
-            android:layout_marginEnd="@dimen/dimen_16"
-            android:layout_marginBottom="@dimen/dimen_32"
-            android:fontFamily="@font/open_sans_regular"
-            android:text="@string/text_about_visit_url"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/blue_500"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/alata"
+            android:textSize="12sp"
+            android:text="@string/txt_github"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/visitTitle" />
+            app:layout_constraintTop_toBottomOf="@id/iv_github" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

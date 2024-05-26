@@ -32,13 +32,15 @@
     <!--  About -->
     <string name="text_about_license_title"><![CDATA[Attributions & License]]></string>
     <string name="text_about_license">Licensed Under Apache 2.0 License</string>
-    <string name="text_about_visit_title">Visit</string>
+    <string name="text_about_visit_title">Visit us at</string>
     <string name="text_about_visit_url"><u>https://github.com/ArunSivanandan/Money-Manager</u></string>
     <string name="text_app_version">v%s (%d)</string>
     <string name="text_share_as_text">Share as Text</string>
     <string name="text_share_as_image">Share as Image</string>
     <string name="text_delete">Delete</string>
     <string name="text_share">Share</string>
+    <string name="iv_github_icon">clickable rounded github icon</string>
+    <string name="txt_github">Github</string>
 
     <!-- share transaction -->
     <string name="share_message">\%s \nAmount: %s, \nTransaction-Type: %s, \nTag: %s, \nDate: %s, \nNote: %s, \nCreatedAt: %s \n\nVisit: https://github.com/Spikeysanju/Expenso</string>
@@ -52,6 +54,19 @@
     // Filter feature
     <string name="text_filter_by">Filter by </string>
     <string name="text_overall">Overall</string>
-    <string name="text_income">All Income</string>
-    <string name="text_expenses">All Expenses</string>
+    <string name="text_income">Income</string>
+    <string name="text_expenses">Expenses</string>
+
+    // Lock Screen
+    <string name="lock_note">For security reasons please create a lock password</string>
+    <string name="lock_note_existing">For security reasons, please enter your lock password</string>
+    <string name="lock_create_new_pwd">Enter new password</string>
+    <string name="lock_confirm_new_pwd">Confirm new password</string>
+    <string name="lock_existing_user_pwd">Enter your password</string>
+
+    <string name="lock_pwd_empty">Password field should not be empty!</string>
+
+    <string name="lock_error_desc">Incorrect password! Please try again.</string>
+    <string name="lock_confirm_btn">Confirm</string>
+    <string name="lock_content_desc">Lock icon displayed for entering password.</string>
 </resources>
