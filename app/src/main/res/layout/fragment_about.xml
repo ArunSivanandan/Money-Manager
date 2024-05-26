@@ -8,6 +8,7 @@
     android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/LayoutBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".view.about.AboutFragment">
@@ -18,7 +19,7 @@
             android:layout_height="140dp"
             android:layout_marginTop="@dimen/dimen_64"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_logo"
+            android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

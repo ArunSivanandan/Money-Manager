@@ -16,4 +16,10 @@
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">@bool/lightNavEnabled
         </item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
 </resources>

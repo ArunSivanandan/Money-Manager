@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="org.moneymanager.com.view.dashboard.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_addTransactionFragment"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/addTransactionFragment"
         android:name="org.moneymanager.com.view.add.AddTransactionFragment"
-        android:label="fragment_add_transaction"
+        android:label="Add Transaction"
         tools:layout="@layout/fragment_add_transaction">
         <action
             android:id="@+id/action_addTransactionFragment_to_dashboardFragment"

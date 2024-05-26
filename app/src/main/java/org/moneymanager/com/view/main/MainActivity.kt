@@ -1,9 +1,13 @@
 package org.moneymanager.com.view.main
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,10 +37,12 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var themeManager: UIModeImpl
     private val viewModel: TransactionViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         /**
@@ -67,25 +73,18 @@ class MainActivity : AppCompatActivity() {
         navController: NavController
     ) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-
-                R.id.dashboardFragment -> {
-                    supportActionBar!!.setDisplayShowTitleEnabled(false)
-                }
-                R.id.addTransactionFragment -> {
-                    supportActionBar!!.setDisplayShowTitleEnabled(true)
-                    binding.toolbar.title = getString(R.string.text_add_transaction)
-                }
-                else -> {
-                    supportActionBar!!.setDisplayShowTitleEnabled(true)
-                }
+            if (destination.id == R.id.dashboardFragment) {
+                supportActionBar!!.setIcon(R.drawable.transparent_icon)
+            } else {
+                supportActionBar!!.setIcon(null)
             }
         }
     }
 
     private fun initViews(binding: ActivityMainBinding) {
         setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(true)
+        supportActionBar!!.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.titlebar_gradient_bg))
 
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?

@@ -7,4 +7,6 @@
     <color name="background">#121212</color>
     <color name="income">#6FCF97</color>
     <color name="expense">#EB5757</color>
+    <color name="transparent">#00000000</color>
+    <color name="bg_color">#E0F6FF</color>
 </resources>
