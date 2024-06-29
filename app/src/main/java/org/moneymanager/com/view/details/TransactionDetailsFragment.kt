@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -133,8 +134,9 @@ class TransactionDetailsFragment : BaseFragment<FragmentTransactionDetailsBindin
     }
 
     private fun shareImage() {
-        if (!isStoragePermissionGranted()) {
-            requestLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+            && !isStoragePermissionGranted()) {
+            requestLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
             return
         }
 
@@ -170,7 +172,7 @@ class TransactionDetailsFragment : BaseFragment<FragmentTransactionDetailsBindin
 
     private fun isStoragePermissionGranted(): Boolean = ContextCompat.checkSelfPermission(
         requireContext(),
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
+        Manifest.permission.READ_EXTERNAL_STORAGE
     ) == PackageManager.PERMISSION_GRANTED
 
     @SuppressLint("StringFormatMatches")

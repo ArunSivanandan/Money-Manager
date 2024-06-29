@@ -8,15 +8,15 @@ data class TransactionsCSV(
     val title: String,
     @CsvBindByName(column = "amount")
     val amount: Double,
-    @CsvBindByName(column = "transactionType")
+    @CsvBindByName(column = "transaction Type")
     val transactionType: String,
     @CsvBindByName(column = "tag")
     val tag: String,
-    @CsvBindByName(column = "date")
+    @CsvBindByName(column = "transaction date")
     val date: String,
     @CsvBindByName(column = "note")
     val note: String,
-    @CsvBindByName(column = "createdAt")
+    @CsvBindByName(column = "log created At")
     val createdAtDate: String
 )
 
